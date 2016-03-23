@@ -24,7 +24,7 @@ shinyServer(function(input, output) {
     y <- c(-a,d,a)
     w <- c((1-p)^2, 2*p*(1-p),p^2)
     cex.val <- 1 + w
-    plot(x, y, cex = cex.val)
+    plot(x, y, cex = cex.val, ylim = c(-10, 10))
     abline(lm(y ~ x))
   })
 })
