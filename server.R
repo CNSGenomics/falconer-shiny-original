@@ -1,4 +1,20 @@
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
+  current.p <- 0.0
+
+  observe({
+    if (current.p != input$sliderP) {
+      updateNumericInput(session, "numericP", NULL, input$sliderP)
+      current.p <<- input$sliderP
+    }
+  })
+
+  observe({
+    if (current.p != input$numericP) {
+      updateSliderInput(session, "sliderP", NULL, input$numericP)
+      current.p <<- input$textP
+    }
+  })
+
   output$plot <- renderPlot({
     p  <- input$p
     a  <- input$a

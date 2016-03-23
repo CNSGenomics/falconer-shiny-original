@@ -5,8 +5,9 @@ shinyUI(fluidPage(
 
   sidebarLayout(
     sidebarPanel(
-      sliderInput("p", "p",
+      sliderInput("sliderP", "p",
                   min = 0.0, max = 1.0, value = 0.3),
+      numericInput("numericP", min = 0.0, max = 1.0, value = 0.3, ""),
       sliderInput("a", "a",
                   min = 0.0, max = 10.0, value = 4.0),
       sliderInput("d", "d",
