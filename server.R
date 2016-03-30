@@ -1,5 +1,7 @@
 shinyServer(function(input, output, session) {
   current.p <- 0.0
+  current.a <- 0.0
+  current.d <- 0.0
 
   observe({
     if (current.p != input$sliderP) {
@@ -11,14 +13,42 @@ shinyServer(function(input, output, session) {
   observe({
     if (current.p != input$numericP) {
       updateSliderInput(session, "sliderP", NULL, input$numericP)
-      current.p <<- input$textP
+      current.p <<- input$numericP
+    }
+  })
+
+  observe({
+    if (current.a != input$sliderA) {
+      updateNumericInput(session, "numericA", NULL, input$sliderA)
+      current.a <<- input$sliderA
+    }
+  })
+
+  observe({
+    if (current.a != input$numericA) {
+      updateSliderInput(session, "sliderA", NULL, input$numericA)
+      current.a <<- input$numericA
+    }
+  })
+
+  observe({
+    if (current.d != input$sliderD) {
+      updateNumericInput(session, "numericD", NULL, input$sliderD)
+      current.d <<- input$sliderD
+    }
+  })
+
+  observe({
+    if (current.d != input$numericD) {
+      updateSliderInput(session, "sliderD", NULL, input$numericD)
+      current.d <<- input$numericD
     }
   })
 
   output$plot <- renderPlot({
-    p  <- input$p
-    a  <- input$a
-    d  <- input$d
+    p  <- input$numericP
+    a  <- input$numericA
+    d  <- input$numericD
     mu <- a*(2*p - 1) + 2*d*p*(1-p)
     beta <- a + d*(1-2*p)
     # Genotype values
