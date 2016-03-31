@@ -45,6 +45,7 @@ shinyServer(function(input, output, session) {
     }
   })
 
+  # plot function encapsulates calculations
   output$plot <- renderPlot({
     p  <- input$numericP
     a  <- input$numericA
