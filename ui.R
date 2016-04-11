@@ -9,14 +9,16 @@ shinyUI(fluidPage(
                   min = 0.0, max = 1.0, value = 0.3),
       numericInput("numericP", min = 0.0, max = 1.0, value = 0.3, step = 0.1, ""),
       sliderInput("sliderA", "a",
-                  min = 0.0, max = 10.0, value = 4.0),
-      numericInput("numericA", min = 0.0, max = 10.0, value = 4.0, ""),
+                  min = -10.0, max = 10.0, value = 4.0),
+      numericInput("numericA", min = -10.0, max = 10.0, value = 4.0, ""),
       sliderInput("sliderD", "d",
-                  min = 0.0, max = 10.0, value = 2.0),
-      numericInput("numericD", min = 0.0, max = 10.0, value = 2.0, "")
+                  min = -10.0, max = 10.0, value = 2.0),
+      numericInput("numericD", min = -10.0, max = 10.0, value = 2.0, "")
     ),
 
     mainPanel(
+      helpText("This is a test of the formula"),
+
       plotOutput("plot")
     )
   )
