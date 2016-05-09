@@ -17,7 +17,7 @@ shinyUI(fluidPage(
     ),
 
     mainPanel(
-      helpText("This is a test of the formula"),
+      div(img(src='model.jpg'), br(), "Arbitrarily assigned genotypic values.", style="text-align: center;"),
 
       plotOutput("plot")
     )
