@@ -78,7 +78,7 @@ shinyServer(function(input, output, session) {
     w <- c((1-p)^2, 2*p*(1-p),p^2)
     cex.val <- (1 + w)^2
     plot(x, y, cex = cex.val, ylim = c(-10, 10), xaxt = "n", xlab = "Allele counts", ylab = "")
-    axis(1, at = c(0, 1, 2), labels = c("bb", "Bb", "BB"))
+    axis(1, at = c(0, 1, 2), labels = c(expression(A[2]*A[2]), expression(A[1]*A[2]), expression(A[1]*A[1])))
     abline(lm(y ~ x))
   })
 })
