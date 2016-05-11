@@ -17,7 +17,8 @@ shinyUI(fluidPage(
       h3("Variance components"),
       textOutput("varianceA"),
       textOutput("varianceD"),
-      textOutput("varianceG")
+      textOutput("varianceG"),
+      textOutput("varianceRatio")
     ),
 
     mainPanel(

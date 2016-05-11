@@ -53,15 +53,19 @@ shinyServer(function(input, output, session) {
   })
 
   output$varianceA <- renderText({
-    paste("Breeding value (A):", v$Va)
+    paste("Average effect (A):", format(v$Va, digits = 2, nsmall = 2))
   })
 
   output$varianceD <- renderText({
-    paste("Dominance deviation (D):", v$Vd)
+    paste("Dominance deviation (D):", format(v$Vd, digits = 2, nsmall = 2))
   })
 
   output$varianceG <- renderText({
-    paste("Genotypic value (G = A + D):", v$Vg)
+    paste("Genotypic (G = A + D):", format(v$Vg, digits = 2, nsmall = 2))
+  })
+
+  output$varianceRatio <- renderText({
+    paste("Additive variance proportion (A / G):", format(v$Va / v$Vg, digits = 2, nsmall = 2))
   })
 
   # plot function encapsulates calculations
