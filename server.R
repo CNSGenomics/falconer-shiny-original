@@ -1,4 +1,5 @@
 shinyServer(function(input, output, session) {
+  v <- reactiveValues(Va = 0, Vd = 0, Vg = 0)
   current.p <- 0.0
   current.a <- 0.0
   current.d <- 0.0
@@ -51,6 +52,18 @@ shinyServer(function(input, output, session) {
     }
   })
 
+  output$varianceA <- renderText({
+    paste("Breeding value (A):", v$Va)
+  })
+
+  output$varianceD <- renderText({
+    paste("Dominance deviation (D):", v$Vd)
+  })
+
+  output$varianceG <- renderText({
+    paste("Genotypic value (G = A + D):", v$Vg)
+  })
+
   # plot function encapsulates calculations
   output$plot <- renderPlot({
     p  <- input$sliderP
@@ -69,16 +82,16 @@ shinyServer(function(input, output, session) {
     bvBB <- 2*(1-p)*beta
     varBV <- (1-p)^2 * (bvAA)^2 + 2*p*(1-p)*(bvAB)^2 + p^2*(bvBB)^2
     # Variance components
-    Va <- 2*p*(1-p)*beta^2
-    Vd <- (2*p*(1-p)*d)^2
-    Vg <- Va + Vd
+    v$Va <- 2*p*(1-p)*beta^2
+    v$Vd <- (2*p*(1-p)*d)^2
+    v$Vg <- v$Va + v$Vd
     # For plotting
     x <- c(0,1,2)
     y <- c(-a,d,a)
     w <- c((1-p)^2, 2*p*(1-p),p^2)
     cex.val <- (1 + w)^2
-    plot(x, y, cex = cex.val, ylim = c(-10, 10), xaxt = "n", xlab = "Allele counts", ylab = "")
-    axis(1, at = c(0, 1, 2), labels = c(expression(A[2]*A[2]), expression(A[1]*A[2]), expression(A[1]*A[1])))
+    plot(x, y, cex = cex.val, ylim = c(-10, 10), xaxt = "n", xlab = "Genotype (effect allele counts)", ylab = "")
+    axis(1, at = c(0, 1, 2), labels = c(expression(A[2]*A[2]~(0)), expression(A[1]*A[2]~(1)), expression(A[1]*A[1]~(2))))
     abline(lm(y ~ x))
   })
 })

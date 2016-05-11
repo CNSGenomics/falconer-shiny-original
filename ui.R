@@ -13,7 +13,11 @@ shinyUI(fluidPage(
       numericInput("numericA", min = -10.0, max = 10.0, value = 4.0, ""),
       sliderInput("sliderD", "d",
                   min = -10.0, max = 10.0, value = 2.0),
-      numericInput("numericD", min = -10.0, max = 10.0, value = 2.0, "")
+      numericInput("numericD", min = -10.0, max = 10.0, value = 2.0, ""),
+      h3("Variance components"),
+      textOutput("varianceA"),
+      textOutput("varianceD"),
+      textOutput("varianceG")
     ),
 
     mainPanel(
